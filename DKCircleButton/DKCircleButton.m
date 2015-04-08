@@ -28,36 +28,53 @@
 @synthesize borderColor = _borderColor;
 @synthesize animateTap = _animateTap;
 
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
     if (self) {
-        _highLightView = [[UIView alloc] initWithFrame:frame];
-        
-        _highLightView.userInteractionEnabled = YES;
-        _highLightView.alpha = 0;
-        _highLightView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
-        
-        _borderColor = [UIColor whiteColor];
-        _animateTap = YES;
-        _borderSize = DKCircleButtonBorderWidth;
-        
-        self.clipsToBounds = YES;
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        _gradientLayerTop = [CAGradientLayer layer];
-        _gradientLayerTop.frame = CGRectMake(0.0, 0.0, frame.size.width, frame.size.height / 4);
-        _gradientLayerTop.colors = @[(id)[UIColor blackColor].CGColor, (id)[[UIColor lightGrayColor] colorWithAlphaComponent:0.01].CGColor];
-        
-        _gradientLayerBottom = [CAGradientLayer layer];
-        _gradientLayerBottom.frame = CGRectMake(0.0, frame.size.height * 3 / 4, frame.size.width, frame.size.height / 4);
-        _gradientLayerBottom.colors = @[(id)[[UIColor lightGrayColor] colorWithAlphaComponent:0.01].CGColor, (id)[UIColor blackColor].CGColor];
-
-        [self addSubview:_highLightView];        
+       [self commonInit]
     }
     
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder]
+    
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+
+- (void)commonInit {
+    _highLightView = [[UIView alloc] initWithFrame:self.frame];
+    
+    _highLightView.userInteractionEnabled = YES;
+    _highLightView.alpha = 0;
+    _highLightView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+    
+    _borderColor = [UIColor whiteColor];
+    _animateTap = YES;
+    _borderSize = DKCircleButtonBorderWidth;
+    
+    self.clipsToBounds = YES;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    _gradientLayerTop = [CAGradientLayer layer];
+    _gradientLayerTop.frame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height / 4);
+    _gradientLayerTop.colors = @[(id)[UIColor blackColor].CGColor, (id)[[UIColor lightGrayColor] colorWithAlphaComponent:0.01].CGColor];
+    
+    _gradientLayerBottom = [CAGradientLayer layer];
+    _gradientLayerBottom.frame = CGRectMake(0.0, self.frame.size.height * 3 / 4, self.frame.size.width, self.frame.size.height / 4);
+    _gradientLayerBottom.colors = @[(id)[[UIColor lightGrayColor] colorWithAlphaComponent:0.01].CGColor, (id)[UIColor blackColor].CGColor];
+    
+    [self addSubview:_highLightView];
 }
 
 - (void)setDisplayShading:(BOOL)displayShading {
