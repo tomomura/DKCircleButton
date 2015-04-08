@@ -33,7 +33,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-       [self commonInit]
+        [self commonInit];
     }
     
     return self;
@@ -41,7 +41,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder]
+    self = [super initWithCoder:aDecoder];
     
     if (self) {
         [self commonInit];
