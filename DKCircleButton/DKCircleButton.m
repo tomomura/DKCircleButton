@@ -28,7 +28,6 @@
 @synthesize borderColor = _borderColor;
 @synthesize animateTap = _animateTap;
 
-
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
@@ -49,7 +48,6 @@
     
     return self;
 }
-
 
 - (void)commonInit {
     _highLightView = [[UIView alloc] initWithFrame:self.frame];
